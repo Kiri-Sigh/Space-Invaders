@@ -31,12 +31,20 @@ pin 0 (GND)
 -> 1 10k resistor ->button
 
 ->mpu6050 GND
+
 -> 4 220 resistor -> 4 LEDs
+
 -> 2 buzzers 
+
 pin (GPIO 18)
+
 ->button
+
 pin 11,13,15,29(GPIO 17,27,22,5)
+
 ->4 LEDs
+
 pin 31,33 (GPIO 6,13)
+
 ->2 passive buzzers
 
