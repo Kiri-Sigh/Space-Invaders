@@ -11,17 +11,25 @@ hardware requirements
 
 
 connect what to which GPIO
+
 pin 1 (3.3V)
 
 ->mpu6050 VCC
+
 ->button
 
 pin 3 (GPIO 2)
+
 ->mpu6050 SDA
+
 pin 5 (GPIO3)
+
 ->mpu6050 SCL
+
 pin 0 (GND)
+
 -> 1 10k resistor ->button
+
 ->mpu6050 GND
 -> 4 220 resistor -> 4 LEDs
 -> 2 buzzers 
