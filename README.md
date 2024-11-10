@@ -1,5 +1,6 @@
 # Space-Invaders
-hardware requirements
+
+#hardware requirements
 -2 PASSIVE buzzers
 -RPI
 -1 breadboard
@@ -10,7 +11,7 @@ hardware requirements
 -jumper wires
 
 
-connect what to which GPIO
+#connect what to which GPIO
 
 pin 1 (3.3V)
 
