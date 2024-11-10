@@ -12,8 +12,10 @@ hardware requirements
 
 connect what to which GPIO
 pin 1 (3.3V)
+
 ->mpu6050 VCC
 ->button
+
 pin 3 (GPIO 2)
 ->mpu6050 SDA
 pin 5 (GPIO3)
