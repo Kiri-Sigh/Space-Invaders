@@ -52,14 +52,14 @@ clock = pygame.time.Clock()
 # variables
 player_x = 350
 player_y = 450
-player_speed = 8
+player_speed = 16
 bullets = []
 enemies = [{"x": randint(0, WIDTH - 40), "y": 20, "color": (255, 0, 0)} for _ in range(5)]  # Red enemies
 enemy_speed = 1
 bullet_speed = 7
 gyro_threshold = 3000
 
-# Calibration offsets
+# calibration offset
 gyro_x_offset = 0
 
 def read_gyro():
@@ -98,9 +98,9 @@ def move_player():
     gyro_x -= gyro_x_offset
 
     if gyro_x > gyro_threshold:
-        player_x += player_speed * 2
+        player_x += player_speed
     elif gyro_x < -gyro_threshold:
-        player_x -= player_speed * 2
+        player_x -= player_speed
     player_x = max(0, min(WIDTH - 40, player_x))  # Boundary check
 
 def fire_bullet():
