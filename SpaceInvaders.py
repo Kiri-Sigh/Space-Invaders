@@ -149,7 +149,8 @@ def game_loop():
     calibrate_gyro()
 
     running = True
-    while running:
+    try:
+        while running:
         screen.fill((0, 0, 0))  # Clear screen
         move_player() 
         move_bullets()
@@ -174,9 +175,17 @@ def game_loop():
 
         pygame.display.flip()
         clock.tick(30)
+    except IOError:
+        print("Error reading from IO sensors. Exiting.")
+    finally:
+        GPIO.cleanup()
+        pygame.quit()
+   
 
 # Run the game loop
 game_loop()
 
 # Clean up GPIO
 GPIO.cleanup()
+pygame.quit()
+
