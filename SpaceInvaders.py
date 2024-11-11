@@ -45,8 +45,7 @@ bus.write_byte_data(MPU6050_ADDR, 0x6B, 0)
 
 # initialize pygame
 pygame.init()
-WIDTH, HEIGHT = 650, 500
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((700, 500))
 pygame.display.set_caption("Space Invader")
 clock = pygame.time.Clock()
 
@@ -112,11 +111,7 @@ def fire_bullet():
     bullets.append({"x": player_x + 15, "y": player_y})
     activate_buzzer(0)  # Play sound on the first buzzer
 
-#def fire_special_bullets():
-    #special_bullets.append({"x": player_x + 15, "y": player_y, "angle": 0})
-    #special_bullets.append({"x": player_x + 15, "y": player_y, "angle": -30})
-    #special_bullets.append({"x": player_x + 15, "y": player_y, "angle": 30})
-    #activate_buzzer(1)
+
 
 #move up bullets
 def move_bullets():
@@ -125,10 +120,7 @@ def move_bullets():
         bullet["y"] -= bullet_speed
     bullets = [b for b in bullets if b["y"] > 0]
 
-    #for bullet in special_bullets:
-        #bullet["y"] -= special_bullet_speed * math.cos(math.radians(bullet["angle"]))
-        #bullet["x"] += special_bullet_speed * math.sin(math.radians(bullet["angle"]))
-    #special_bullets = [b for b in special_bullets if 0 <= b["x"] <= WIDTH and b["y"] > 0]
+   
 
 #move down enemies
 def move_enemies():
@@ -137,11 +129,6 @@ def move_enemies():
         if enemy["y"] > HEIGHT:
             enemy["x"] = randint(0, WIDTH - 40)
             enemy["y"] = 20
-
-    #yellow_enemy["y"] += enemy_speed
-    #if yellow_enemy["y"] > HEIGHT:
-        #yellow_enemy["x"] = randint(0, WIDTH - 40)
-        #yellow_enemy["y"] = 20
 
 #check if bullet hit enemy
 def check_collision():
@@ -159,18 +146,6 @@ def check_collision():
                 for pin in LED_PINS:
                     GPIO.output(pin, GPIO.LOW)
 
-        #for bullet in bullets:
-            #if abs(bullet["x"] - yellow_enemy["x"]) < 20 and abs(bullet["y"] - yellow_enemy["y"]) < 20:
-                #special_bullet_ready = True
-                #bullets.remove(bullet)
-                #yellow_enemy.clear()
-                
-                #activate_buzzer(1)
-                #for pin in LED_PINS:
-                    #GPIO.output(pin, GPIO.HIGH)
-                #time.sleep(0.1)
-                #for pin in LED_PINS:
-                    #GPIO.output(pin, GPIO.LOW)
 
 # Main loop
 def game_loop():
@@ -185,30 +160,21 @@ def game_loop():
         move_enemies()
         check_collision()
 
-        # Handle events
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+       
 
         # Check button inputs for firing
-        if GPIO.input(18) == GPIO.HIGH:  # Normal Bullet
+        if GPIO.input(18) == GPIO.HIGH:  # fire Bullet
             fire_bullet()
             time.sleep(0.2)  # delay
 
-        #if GPIO.input(25) == GPIO.HIGH:  # Special Bullet
-            #fire_special_bullets()
-            #special_bullet_ready = True
-            #time.sleep(0.2)  
 
         # Drawing enemies
-        pygame.draw.rect(screen, (0, 0, 255), (player_x, player_y, 40, 20))  # Player
+        pygame.draw.rect(screen, (0, 0, 255), (player_x, player_y, 40, 20))  # player
         for bullet in bullets:
-            pygame.draw.rect(screen, (255, 255, 0), (bullet["x"], bullet["y"], 5, 10))  # Regular Bullets
-        #for bullet in special_bullets:
-            #pygame.draw.circle(screen, (0, 255, 0), (int(bullet["x"]), int(bullet["y"])), 5)  # Special Bullets
+            pygame.draw.rect(screen, (255, 255, 0), (bullet["x"], bullet["y"], 5, 10))  # bullets
+        
         for enemy in enemies:
-            pygame.draw.rect(screen, enemy["color"], (enemy["x"], enemy["y"], 40, 20))  # Enemies
-        #pygame.draw.rect(screen, yellow_enemy["color"], (yellow_enemy["x"], yellow_enemy["y"], 40, 20))  # Yellow Enemy
+            pygame.draw.rect(screen, enemy["color"], (enemy["x"], enemy["y"], 40, 20))  # enemies
 
         pygame.display.flip()
         clock.tick(30)
