@@ -1,6 +1,6 @@
 # Space-Invaders
-
-#hardware requirements
+# run sudo SpaceInvader.py
+# hardware requirements
 -2 PASSIVE buzzers
 -RPI
 -1 breadboard
@@ -11,7 +11,7 @@
 -jumper wires
 
 
-#connect what to which GPIO
+# connect what to which GPIO
 
 pin 1 (3.3V)
 
