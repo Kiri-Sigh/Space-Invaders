@@ -15,32 +15,35 @@ GYRO_XOUT_H = 0x43
 
 
 # GPIO pin setup for buttons=
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Normal Bullet Button
-#GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Special Bullet Button
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Bullet Button
 
-# GPIO setup for LEDs
-LED_PINS = [17, 27, 22, 5]  # 4 LEDs connected to GPIO 17, 27, 22, 5
-for pin in LED_PINS:
-    GPIO.setup(pin, GPIO.OUT)
+
+# GPIO for LEDs
+# 4 LEDs connected to GPIO 17, 27, 22, 5
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(27, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(5, GPIO.OUT)
 
 # GPIO setup for passive buzzers with PWM
-BUZZER_PINS = [6, 13]  # 2 passive buzzers connected to GPIO 6 and 13
+#2 passive buzzers connected to GPIO 6 and 13
 buzzers = []
-for pin in BUZZER_PINS:
-    GPIO.setup(pin, GPIO.OUT)
-    buzzers.append(GPIO.PWM(pin, 1000))  # Initialize PWM with a f of 1000
+GPIO.setup(6, GPIO.OUT)
+buzzers.append(GPIO.PWM(6, 1000))  # Initialize PWM with a f of 1000
+GPIO.setup(13, GPIO.OUT)
+buzzers.append(GPIO.PWM(13, 1000))
 
-def activate_buzzer(i, duration=0.1, frequency=1000):
-    buzzers[i].ChangeFrequency(frequency)
+def activate_buzzer(i, duration=0.1, f=1000):
+    buzzers[i].ChangeFrequency(f)
     buzzers[i].start(50) 
     time.sleep(duration)
     buzzers[i].stop()
 
-# Initialize MPU6050
+# initialize MPU6050
 bus = smbus.SMBus(1)
 bus.write_byte_data(MPU6050_ADDR, 0x6B, 0)
 
-# Initialize Pygame
+# initialize pygame
 pygame.init()
 WIDTH, HEIGHT = 650, 500
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
