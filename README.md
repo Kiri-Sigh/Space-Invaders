@@ -1,5 +1,5 @@
 # Space-Invaders
-# run sudo SpaceInvader.py
+# run SpaceInvaders.py
 # hardware requirements
 -2 PASSIVE buzzers
 -RPI
