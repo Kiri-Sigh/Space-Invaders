@@ -1,4 +1,8 @@
 # Space-Invaders
+report-
+https://docs.google.com/document/d/1ZazD0E_ij2NvHmbTIOrqkfDm9lKzNR1Q7Nnuor3exc0/edit?usp=sharing
+project video-
+https://drive.google.com/file/d/1XOHvnePGZFEEbvK6Zv_xlmfXiC9_pDrS/view?usp=sharing
 # run SpaceInvaders.py
 # hardware requirements
 -2 PASSIVE buzzers
