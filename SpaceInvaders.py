@@ -50,18 +50,14 @@ pygame.display.set_caption("Space Invader")
 clock = pygame.time.Clock()
 
 # variables
-player_x = WIDTH // 2
-player_y = HEIGHT - 50
+player_x = 350
+player_y = 450
 player_speed = 8
 bullets = []
-#special_bullets = []
 enemies = [{"x": randint(0, WIDTH - 40), "y": 20, "color": (255, 0, 0)} for _ in range(5)]  # Red enemies
-#yellow_enemy = {"x": randint(0, WIDTH - 40), "y": 20, "color": (255, 255, 0)}  # Yellow enemy
 enemy_speed = 1
 bullet_speed = 7
-#special_bullet_speed = 7
 gyro_threshold = 3000
-#special_bullet_ready = False  
 
 # Calibration offsets
 gyro_x_offset = 0
